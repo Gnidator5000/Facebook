@@ -13,13 +13,17 @@
         </div>
         <div class="row">
             <form action="login.php">
-                <div class="mb-3 col-6 offset-4">
+                <div class="mb-3 col-6 offset-3">
                     <label class="form-label w-100" for="emailInput">Email:</label>
                     <input class="form-control w-100" type="email" name="email" id="emailInput">
                 </div>
                 <div class="mb-3 col-6 offset-3">
                 <label class="form-label w-100" for="passwordInput">hasło:</label>
                 <input class="form-control w-100" type="password" name="password" id="passwordInput">
+                </div>
+                </div>
+                <div class="mb-3 col-6 offset-3">
+                <button type="submit"class="btn btn-primary w-100">Zaloguj</button>
                 </div>
             </form>
         </div>
