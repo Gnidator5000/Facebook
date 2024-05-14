@@ -1,18 +1,73 @@
+<?php 
+    
+$showAlert = false;  
+$showError = false;  
+$exists=false; 
+    
+if($_SERVER["REQUEST_METHOD"] == "POST") { 
+      
+
+    include 'dbconnect.php';    
+    
+    $username = $_POST["email"];  
+    $password = $_POST["password"];  
+    $cpassword = $_POST["passwordRepeat"]; 
+            
+    
+    $sql = "Select * from user where email='$username'"; 
+    
+    $result = mysqli_query($conn, $sql); 
+    
+    $num = mysqli_num_rows($result);  
+    
+
+    if($num == 0) { 
+        if(($password == $cpassword) && $exists==false) { 
+    
+            $hash = password_hash($password,  
+                                PASSWORD_DEFAULT); 
+                
+            
+            $sql = "INSERT INTO `user` (`email`,  
+                `password`) VALUES ('$username',  
+                '$hash')"; 
+    
+            $result = mysqli_query($conn, $sql); 
+    
+            if ($result) { 
+                $showAlert = true;  
+            } 
+        }  
+        else {  
+            $showError = "Passwords do not match";  
+        }       
+    }
+    
+   if($num>0)  
+   { 
+      $exists="Username not available";  
+   }  
+    
+}   
+    
+?> 
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rejestracja</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
+<form action="register.php" method = "post">
         <div class="row text-center mt-5 mb-3">
             <h1>Rejestracja</h1>
         </div>
         <div class="row">
-            <form action="register.php">
+            
                 <div class="mb-3 col-6 offset-3">
                     <label class="form-label w-100" for="emailInput">Email:</label>
                     <input class="form-control w-100" type="email" name="email" id="emailInput">
@@ -23,7 +78,7 @@
                 </div>
                 <div class="mb-3 col-6 offset-3">
                 <label class="form-label w-100" for="passwordRepeatInput">Powtórz hasło:</label>
-                <input class="form-control w-100" type="password" name="passwordRepead" id="passwordRepeatInput">
+                <input class="form-control w-100" type="password" name="passwordRepeat" id="passwordRepeatInput">
                 <input type="checkbox">Potwierdź regulamin
                 </div>
                 <div class="mb-3 col-6 offset-3">
