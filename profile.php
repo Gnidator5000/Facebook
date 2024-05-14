@@ -16,7 +16,7 @@ $sql = "SELECT * FROM profile
         LIMIT 1";
 
 //połącz się z bazą danych
-$db = new mysqli('localhost', 'root', '', 'facebook');
+$db = new mysqli('localhost', 'root', '', 'projektprofil');
 
 //przygotuj kwerendę do wysłania
 $query = $db->prepare($sql);

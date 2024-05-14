@@ -1,34 +1,67 @@
 body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
     padding: 0;
+}
+
+header {
+    background-color: #3b5998;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+#conteiner {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.post {
+    background-color: #fff;
+    border: 1px solid #dddfe2;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.tytul-posta {
+    font-size: 20px;
     margin: 0;
 }
-header {
-    background-color:lightblue;
-    margin-bottom: 10vh;
-    text-align: center;
-    padding: 10px;
-}
- 
 
-div.post {
-    width: 50vw;
-    margin: 0 auto;
-    background-color:lightblue;
-    padding: 10px;
-    margin-bottom: 10vh;
+.autor {
+    color: #888;
+    margin-top: 5px;
 }
-img.post-image {
+
+.post-image {
     width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
 }
-div.stopka-posta  {
+
+.opis-posta {
+    margin-top: 10px;
+}
+
+.stopka-posta {
+    margin-top: 10px;
     display: flex;
+    justify-content: space-between;
 }
-span.data-dodania,
-span.post-wynik {
-    display: block;
-    flex: 1;
-    font-size: 75%;
+
+.data-dodania, .wynik {
+    font-size: 14px;
+    color: #888;
 }
-span.wynik {
-    text-align: right;
+
+.wynik {
+    cursor: pointer; 
+}
+
+.wynik:hover {
+    color: #3b5998; 
 }
