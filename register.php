@@ -1,9 +1,5 @@
 <?php 
     
-$showAlert = false;  
-$showError = false;  
-$exists=false; 
-    
 if($_SERVER["REQUEST_METHOD"] == "POST") { 
       
 
@@ -20,6 +16,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $num = mysqli_num_rows($result);  
     
+    if(!isset($_POST['regulamin'])){
+        $showError = "Nie zaakaceptowano regulaminu"; 
+        echo "<script type='text/javascript'>alert('$showError');</script>";
+    }
 
     if($num == 0) { 
         if(($password == $cpassword) && $exists==false) { 
@@ -27,25 +27,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             $hash = password_hash($password,  
                                 PASSWORD_DEFAULT); 
                 
-            
             $sql = "INSERT INTO `user` (`email`,  
                 `password`) VALUES ('$username',  
                 '$hash')"; 
     
             $result = mysqli_query($conn, $sql); 
     
-            if ($result) { 
-                $showAlert = true;  
-            } 
         }  
         else {  
-            $showError = "Passwords do not match";  
+            $showError = "Haslo nie jest takie samo"; 
+            echo "<script type='text/javascript'>alert('$showError');</script>";
+            
         }       
     }
     
    if($num>0)  
    { 
-      $exists="Username not available";  
+      $exists="email juz jest zajety";  
+      echo "<script type='text/javascript'>alert('$exists');</script>";
    }  
     
 }   
@@ -79,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="mb-3 col-6 offset-3">
                 <label class="form-label w-100" for="passwordRepeatInput">Powtórz hasło:</label>
                 <input class="form-control w-100" type="password" name="passwordRepeat" id="passwordRepeatInput">
-                <input type="checkbox">Potwierdź regulamin
+                <input name= "regulamin" type="checkbox">Potwierdź regulamin
                 </div>
                 <div class="mb-3 col-6 offset-3">
                 <button type="submit"class="btn btn-primary w-100">Zarejestruj</button>

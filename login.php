@@ -1,3 +1,35 @@
+<?php
+
+   session_start();
+    
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+    include("dbconnect.php");
+
+      $myusername = mysqli_real_escape_string($conn, $_POST['email']);
+      $mypassword = mysqli_real_escape_string($conn, $_POST['password']);
+
+      $hash = password_hash($mypassword,  
+      PASSWORD_DEFAULT); 
+
+      $sql = "Select * from user where email='$myusername'"; 
+
+      $result = mysqli_query($conn,$sql);      
+      $row = mysqli_num_rows($result);      
+      $count = mysqli_num_rows($result);
+      $user_data_row = mysqli_fetch_assoc($result);
+      echo "<script type='text/javascript'>alert('$sql');</script>";
+
+      if($count == 1 && password_verify($mypassword, $user_data_row['password'])) {
+	  
+         $_SESSION['login_user'] = $myusername;
+         header("location: strona.html");
+      } else {
+         $error = "Twoj email lub haslo jest nieprawidlowe!";
+         echo "<script type='text/javascript'>alert('$error');</script>";
+      }
+   }
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -8,11 +40,11 @@
 </head>
 <body>
     <div class="container">
+    <form action="login.php" method = "post">
         <div class="row text-center mt-5 mb-3">
             <h1>Logowanie</h1>
         </div>
         <div class="row">
-            <form action="login.php">
                 <div class="mb-3 col-6 offset-3">
                     <label class="form-label w-100" for="emailInput">Email:</label>
                     <input class="form-control w-100" type="email" name="email" id="emailInput">
