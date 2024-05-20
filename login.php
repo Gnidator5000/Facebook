@@ -58,6 +58,11 @@
                 <button type="submit"class="btn btn-primary w-100">Zaloguj</button>
                 </div>
             </form>
+                <div class="mb-3 col-6 offset-3">
+                <a href="index.php">
+                <button class="btn btn-primary w-100">Powrót do strony głównej</button>
+                </a>
+                </div>
         </div>
     </div>
 </body>

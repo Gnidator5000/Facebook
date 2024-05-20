@@ -1,5 +1,9 @@
 <?php 
     
+$showAlert = false;  
+$showError = false;  
+$exists=false;
+
 if($_SERVER["REQUEST_METHOD"] == "POST") { 
       
 
@@ -83,7 +87,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="mb-3 col-6 offset-3">
                 <button type="submit"class="btn btn-primary w-100">Zarejestruj</button>
                 </div>
+                <div class="mb-3 col-6 offset-3">
+                <a href="index.php">
+                <button class="btn btn-primary w-100">Powrót do strony głównej</button>
+                </a>
+                </div>
             </form>
+                
         </div>
     </div>
 </body>
