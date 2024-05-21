@@ -36,10 +36,6 @@ h1 {
     margin: 10px 0;
 }
 
-.info p:first-child {
-    font-weight: bold;
-}
-
 .info img {
     width: 100px;
     height: 100px;

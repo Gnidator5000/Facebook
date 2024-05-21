@@ -1,6 +1,20 @@
 <?php
+    require_once('class/User.class.php');
 
-   session_start();
+    session_start();
+
+
+if (isset($_REQUEST['email']) && isset($_REQUEST['password'])) {
+    //wysłano formularz - przechwyć i obrób dane
+    $myusername = $_REQUEST['email'];
+    $mypassword = $_REQUEST['password'];
+    //wywołujemy metodę klasy
+    //metody statyczne w PHP wywołuje się poprzez ::
+    $result = User::Login($myusername, $mypassword);
+    echo $result;
+    //$result zawiera true jeśli udało się zalogować lub 
+    //fasle w innym wypadku
+}
     
    if($_SERVER["REQUEST_METHOD"] == "POST") {
     include("dbconnect.php");
@@ -13,20 +27,22 @@
 
       $sql = "Select * from user where email='$myusername'"; 
 
-      $result = mysqli_query($conn,$sql);      
-      $row = mysqli_num_rows($result);      
-      $count = mysqli_num_rows($result);
-      $user_data_row = mysqli_fetch_assoc($result);
+      $result2 = mysqli_query($conn,$sql);      
+      $row = mysqli_num_rows($result2);      
+      $count = mysqli_num_rows($result2);
+      $user_data_row = mysqli_fetch_assoc($result2);
       echo "<script type='text/javascript'>alert('$sql');</script>";
 
-      if($count == 1 && password_verify($mypassword, $user_data_row['password'])) {
+      //$u = new User($result['id'], $result['email']);
+    //   if($count == 1 && password_verify($mypassword, $user_data_row['password'])) {
 	  
-         $_SESSION['login_user'] = $myusername;
-         header("location: strona.html");
-      } else {
-         $error = "Twoj email lub haslo jest nieprawidlowe!";
-         echo "<script type='text/javascript'>alert('$error');</script>";
-      }
+    //     $u = new User($result['id'], $result['email']);
+    //      $_SESSION['login_user'] = $u;
+    //      header("location: strona.html");
+    //   } else {
+    //      $error = "Twoj email lub haslo jest nieprawidlowe!";
+    //      echo "<script type='text/javascript'>alert('$error');</script>";
+    //   }
    }
 ?>
 
@@ -59,9 +75,20 @@
                 </div>
             </form>
                 <div class="mb-3 col-6 offset-3">
-                <a href="index.php">
+                <a href="strona.html">
                 <button class="btn btn-primary w-100">Powrót do strony głównej</button>
                 </a>
+                <?php
+            if (isset($result)) {
+                if ($result) {
+                    header("location: strona.html");
+                    
+                } else {
+                    echo "Użytkownik nie zalogowany";
+                }
+            }
+
+            ?>
                 </div>
         </div>
     </div>

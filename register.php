@@ -65,37 +65,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <div class="container">
-<form action="register.php" method = "post">
-        <div class="row text-center mt-5 mb-3">
-            <h1>Rejestracja</h1>
-        </div>
+    <form action="register.php" method = "post">
+
+        <h1 style="text-align: center">Rejestracja</h1>
         <div class="row">
-            
                 <div class="mb-3 col-6 offset-3">
                     <label class="form-label w-100" for="emailInput">Email:</label>
                     <input class="form-control w-100" type="email" name="email" id="emailInput">
                 </div>
                 <div class="mb-3 col-6 offset-3">
-                <label class="form-label w-100" for="passwordInput">hasło:</label>
-                <input class="form-control w-100" type="password" name="password" id="passwordInput">
+                    <label class="form-label w-100" for="passwordInput">hasło:</label>
+                    <input class="form-control w-100" type="password" name="password" id="passwordInput">
                 </div>
                 <div class="mb-3 col-6 offset-3">
-                <label class="form-label w-100" for="passwordRepeatInput">Powtórz hasło:</label>
-                <input class="form-control w-100" type="password" name="passwordRepeat" id="passwordRepeatInput">
-                <input name= "regulamin" type="checkbox">Potwierdź regulamin
+                    <label class="form-label w-100" for="passwordRepeatInput">Powtórz hasło:</label>
+                    <input class="form-control w-100" type="password" name="passwordRepeat" id="passwordRepeatInput">
+                    <input name= "regulamin" type="checkbox">Potwierdź regulamin
                 </div>
                 <div class="mb-3 col-6 offset-3">
-                <button type="submit"class="btn btn-primary w-100">Zarejestruj</button>
-                </div>
-                <div class="mb-3 col-6 offset-3">
-                <a href="index.php">
-                <button class="btn btn-primary w-100">Powrót do strony głównej</button>
-                </a>
-                </div>
-            </form>
-                
+                    <button type="submit"class="btn btn-primary w-100">Zarejestruj</button>
+                </div>     
+    </form>
+
         </div>
-    </div>
+        <div class="mb-3 col-6 offset-3">
+                <a href="strona.html">
+                    <button class="btn btn-primary w-100">Powrót do strony głównej</button>
+                </a>
+            </div>
+</div>  
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>
