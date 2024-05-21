@@ -30,10 +30,16 @@ if(isset($_REQUEST['profileID'])) {
 <body>
     <div class="naglowek">
     <h1>Profil</h1>
+            <a href="strona.php">
+                    <button class="btn btn-primary w-100">Powrót do strony głównej</button>
+                </a>
     </div>
     <div class="zdjecie">
-        <img src="https://picsum.photos/800/600" alt="">
-    </div>
+        <?php
+    $profile = $p;
+    echo '<img src="'.$profile->getProfilePhotoURL($profile->getProfileID()).'" style="width: 100px ,height: 200px">';
+
+?>    </div>
     <div class="info">
         <p> Imie i Nazwisko: <?php echo $p->getFullName(); ?> </p> 
         <p>E-Mail: <?php echo $_SESSION['user']->GetEmail();?> </p>

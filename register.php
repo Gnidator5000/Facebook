@@ -89,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
         <div class="mb-3 col-6 offset-3">
-                <a href="strona.html">
+                <a href="strona.php">
                     <button class="btn btn-primary w-100">Powrót do strony głównej</button>
                 </a>
             </div>

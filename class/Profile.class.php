@@ -27,7 +27,7 @@ class Profile {
         $q->execute();
         $result = $q->get_result();
         $row = $result->fetch_assoc();
-        $p = new Profile($row['ID'], $row['userID'], $row['firstName'], $row['lastName'], $row['profilePhotoID']);
+        $p = new Profile($row['id'], $row['userid'], $row['FirstName'], $row['LastName'], $row['profilePhotoD']);
         return $p;
     }
     static function GetAll() : array {
@@ -41,7 +41,7 @@ class Profile {
         $result = $q->get_result();
         $profiles = array();
         while($row = $result->fetch_assoc()){
-            $profiles[] = new Profile($row['ID'], $row['userID'], $row['firstName'], $row['lastName'], $row['profilePhotoID']);
+            $profiles[] = new Profile($row['id'], $row['userid'], $row['FirstName'], $row['LastName'], $row['profilePhotoD']);
         }
         return $profiles;
     }
@@ -50,7 +50,7 @@ class Profile {
         //zwróć obiekt Profile
         $db = new mysqli('localhost', 'root', '', 'facebook');
         //kwerenda do bazy danych
-        $sql = "SELECT * FROM profile WHERE userID=? LIMIT 1";
+        $sql = "SELECT * FROM profile WHERE userid=? LIMIT 1";
         $q = $db->prepare($sql);
         $q->bind_param("i", $userID);
         $q->execute();
@@ -62,11 +62,22 @@ class Profile {
     function getFullName() : string {
         return $this->_firstName . ' ' . $this->_lastName;
     }
-    function getProfilePhotoURL() : string {
+    function getProfileID() : string {
+        return $this->_profilePhotoID;
+    }
+    function getProfilePhotoURL($profileID) : string {
         //TODO: znajdz i wyswietl zdjecie z bazy
-
+        $db = new mysqli('localhost', 'root', '', 'facebook');
+        $sql = "SELECT * FROM photo WHERE profileid=? LIMIT 1";
+        $q = $db->prepare($sql);
+        $q->bind_param("i", $profileID);
+        $q->execute();
+        $result = $q->get_result();
+        $row = $result->fetch_assoc();
+        //$p = $result['url'];
         //fallback
-        return 'https://via.placeholder.com/300x400';
+        
+        return $row['url'];
     }
 }
 

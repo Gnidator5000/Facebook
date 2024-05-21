@@ -75,13 +75,13 @@ if (isset($_REQUEST['email']) && isset($_REQUEST['password'])) {
                 </div>
             </form>
                 <div class="mb-3 col-6 offset-3">
-                <a href="strona.html">
+                <a href="strona.php">
                 <button class="btn btn-primary w-100">Powrót do strony głównej</button>
                 </a>
                 <?php
             if (isset($result)) {
                 if ($result) {
-                    header("location: strona.html");
+                    header("location: strona.php");
                     
                 } else {
                     echo "Użytkownik nie zalogowany";
